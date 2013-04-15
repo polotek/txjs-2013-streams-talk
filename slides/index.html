@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+			    <section data-markdown>
+# Node Streams
+
+I'm Marco Rogers (@polotek).
+
+I work at Yammer.
+
+I'm a javascript guy.
+			    </section>
+			    <section data-markdown>
+# What are they?
+
+Callbacks
+
+    fs.readFile('/path/to/file.txt', function(err, data) {
+      // do something with your data
+    });
+			    </section>
+			    <section data-markdown>
+# What are they?
+
+Event Emitter
+
+    fileHandle.on('data', function(data) {
+      // do something with your data
+    });
+			    </section>
+			    <section data-markdown>
+# What are They?
+
+* Streams are special event emitters.
+* Streams are the way node tells you about incremental data.
+			    </section>
+			    <section data-markdown>
+Streams are the way node encourages you to stop procrastinating.
+
+		// uploading
+		var data = '';
+		req.on('data', function(chunk) {
+		  data += chunk;
+		});
+		req.on('end', function() {
+		  fs.writeFile('./files/test.json', data);
+		  res.end();
+		});
+					</section>
+					<section data-markdown>
+## Why not?
+
+Buffering into memory is inefficient. That's how the other guys do it.
+
+Streams are meant to be composed together into a "pipe" of continuous data.
+					</section>
+					<section data-markdown>
+## Streams API
+
+		// uploading
+		var file = fs.createWriteStream('./files/test.json');
+		req.pipe(file);
+					</section>
+					<section data-markdown>
+# Why?
+
+* Keep things moving.
+* Lower memory usage.
+* Higher throughput.
+* Handle backpressure.
+					</section>
+					<section data-markdown>
+# Base classes
+
+Node provides base implementations that make it easy for you to achieve common patterns.
+
+* Passthrough
+* Transform
+* Duplex
+					</section>
+					<section data-markdown>
+# Passthrough
+					</section>
+					<section data-markdown>
+# Transform
+					</section>
+					<section data-markdown>
+# Duplex
+					</section>
+					<section data-markdown>
+# Questions?
+
+* Strings vs. Buffers? (yes)
+* Better error handling? (domains?)
+* ~~Doing async work before piping?~~
+* ~~Why doesn't pause() actually pause?~~
+* When not to use streams? (???)
+					</section>
+					<section data-markdown>
+# Thanks
+
+Marco Rogers
+
+github: [@polotek](https://github.com/polotek)
+twitter: [@polotek](https://twitter.com/polotek)
+					</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
