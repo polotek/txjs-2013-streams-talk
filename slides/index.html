@@ -20,6 +20,7 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
+
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
 			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
@@ -97,7 +98,7 @@ Streams are meant to be composed together into a "pipe" of continuous data.
 		req.pipe(file);
 					</section>
 					<section data-markdown>
-# Why?
+## Why?
 
 * Keep things moving.
 * Lower memory usage.
@@ -105,39 +106,87 @@ Streams are meant to be composed together into a "pipe" of continuous data.
 * Handle backpressure.
 					</section>
 					<section data-markdown>
-# Base classes
+What the hell is backpressure?
+					</section>
+					<section data-markdown>
+## Upload demo
+					</section>
+					<section data-markdown>
+## Base classes
+
+Getting the details of streaming right is hard.
+
+So you don't have to.
+					</section>
+					<section data-markdown>
+## Base classes
 
 Node provides base implementations that make it easy for you to achieve common patterns.
 
-* Passthrough
-* Transform
+* Readable/Writable
 * Duplex
+* Transform
+* Passthrough
 					</section>
 					<section data-markdown>
-# Passthrough
+## Duplex
+
+A stream that is both readable and writable.
 					</section>
 					<section data-markdown>
-# Transform
+## Transform
+
+A duplex stream that processes incoming data and pushes out transformed data.
 					</section>
 					<section data-markdown>
-# Duplex
+## GZIP demo
 					</section>
 					<section data-markdown>
-# Questions?
+## Passthrough
+
+A transform stream that doesn't transform anything. Mostly for testing, but...
+					</section>
+					<section data-markdown>
+## Passthrough
+
+		uploadedFile.pipe(s3Stream);
+		uploadedFile.pipe(tmpFileStream);
+
+What happens when s3 craps out?
+					</section>
+					<section data-markdown>
+## Passthrough
+
+		uploadedFile.pipe(errorHandler).pipe(s3Stream);
+		uploadedFile.pipe(tmpFileStream);
+
+Handle s3 problem, but you still get the backup on disk.
+					</section>
+					<section data-markdown>
+## Questions?
 
 * Strings vs. Buffers? (yes)
 * Better error handling? (domains?)
-* ~~Doing async work before piping?~~
-* ~~Why doesn't pause() actually pause?~~
-* What the hell is readable.unshift()?
+* Doing async work before piping? (fixed)
+* Why doesn't pause() actually pause? (fixed)
+* Piping to multiple destinations?
 * When not to use streams? (???)
 					</section>
 					<section data-markdown>
-# Thanks
+We need to get better at this. Help us.
+					</section>
+					<section data-markdown>
+## Final thought?
+
+Try to think in streams, until you can't.
+					</section>
+					<section data-markdown>
+## Thanks
 
 Marco Rogers
 
 github: [@polotek](https://github.com/polotek)
+
 twitter: [@polotek](https://twitter.com/polotek)
 					</section>
 
