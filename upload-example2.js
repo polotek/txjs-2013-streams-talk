@@ -9,7 +9,7 @@ http.createServer(function(request, response) {
     form.onPart = function(part) {
 
       // the part is a stream of the incoming upload
-      part.pipe(fs.createWriteStream('./files/test.json'));
+      part.pipe(fs.createWriteStream('./files/test.txt'));
 
     }
     form.on('end', function() {
