@@ -1,0 +1,19 @@
+{
+  "name": "txjs-2013-streams-talk",
+  "version": "1.0.0",
+  "description": "TXJS 2013 - Node Streams talk",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/polotek/txjs-2013-streams-talk.git"
+  },
+  "keywords": [
+    "streams"
+  ],
+  "author": "Marco Rogers (@polotek)",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "gitHead": "c946ff0382b1d04a24c1b7ad779c6f454599c095",
+  "dependencies": {
+    "formidable": "~1.0"
+  }
+}
