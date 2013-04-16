@@ -47,7 +47,7 @@ I work at Yammer.
 I'm a javascript guy.
 			    </section>
 			    <section data-markdown>
-# What are they?
+## What are they?
 
 Callbacks
 
@@ -56,7 +56,7 @@ Callbacks
     });
 			    </section>
 			    <section data-markdown>
-# What are they?
+## What are they?
 
 Event Emitter
 
@@ -65,10 +65,9 @@ Event Emitter
     });
 			    </section>
 			    <section data-markdown>
-# What are They?
+## What are They?
 
-* Streams are special event emitters.
-* Streams are the way node tells you about incremental data.
+Streams are the way node tells you about incremental data.
 			    </section>
 			    <section data-markdown>
 Streams are the way node encourages you to stop procrastinating.
@@ -93,6 +92,11 @@ Streams are meant to be composed together into a "pipe" of continuous data.
 					<section data-markdown>
 ## Streams API
 
+The Streams API is a set of patterns and conventions for dealing with streaming data in node.
+					</section>
+					<section data-markdown>
+## Streams API
+
 		// uploading
 		var file = fs.createWriteStream('./files/test.json');
 		req.pipe(file);
@@ -107,6 +111,8 @@ Streams are meant to be composed together into a "pipe" of continuous data.
 					</section>
 					<section data-markdown>
 What the hell is backpressure?
+
+(ask me later)
 					</section>
 					<section data-markdown>
 ## Upload demo
@@ -158,9 +164,14 @@ What happens when s3 craps out?
 ## Passthrough
 
 		uploadedFile.pipe(errorHandler).pipe(s3Stream);
-		uploadedFile.pipe(tmpFileStream);
+		uploadedFile.pipe(tmpFile);
 
 Handle s3 problem, but you still get the backup on disk.
+					</section>
+					<section data-markdown>
+## Why?
+
+Node streams are how you bring modularity to streaming data.
 					</section>
 					<section data-markdown>
 ## Questions?
